@@ -22,6 +22,7 @@ def webp2gif(path: Path):
                    append_images=frames[1:],
                    optimize=True,
                    duration=img.info.get("duration", 10),
+                   disposal = 2,
                    loop=img.info.get("loop", 0),
                    quality=100)
     
