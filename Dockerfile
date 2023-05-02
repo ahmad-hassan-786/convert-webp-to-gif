@@ -5,6 +5,6 @@ COPY package*.json ./
 COPY requirements.txt /app
 RUN pip install --no-cache-dir -r requirements.txt
 RUN npm install
-COPY . .
+COPY . /app
 CMD ["npm", "start"]
 EXPOSE 3000/tcp
