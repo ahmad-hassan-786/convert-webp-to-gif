@@ -1,10 +1,29 @@
-FROM node:14-alpine
-FROM python:3.9
+# Use a Node.js base image
+FROM node:14.16.1
+
+# Install Python and pip
+RUN apt-get update && \
+    apt-get install -y python3 python3-pip && \
+    apt-get clean
+
+# Set the working directory
 WORKDIR /app
-COPY requirements.txt /app
-COPY package*.json ./
-RUN pip install --no-cache-dir -r requirements.txt npm install
-RUN npm install
-COPY . .
-CMD ["npm", "start"]
-EXPOSE 3000/tcp
+
+# Install Python dependencies
+COPY requirements.txt .
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+# Copy the code for both the Node.js API and Python code
+COPY node_api/ /app/node_api/
+COPY python_code/ /app/python_code/
+
+# Set environment variables
+ENV PYTHONPATH=/app/python_code
+ENV NODE_ENV=production
+ENV PORT=3000
+
+# Expose the port that the Node.js API will listen on
+EXPOSE 3000
+
+# Start the application
+CMD ["npm", "run", "start"]
