@@ -1,7 +1,7 @@
 const express = require("express");
 const BodyParser = require("body-parser");
 const {PythonShell} = require("python-shell");
-const fs = require("fs/promises");
+const fs = require("fs");
 
 const app = express();
 let PORT = process.env.PORT || 3000;
