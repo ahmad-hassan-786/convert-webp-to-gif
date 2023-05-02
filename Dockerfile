@@ -2,9 +2,9 @@
 FROM node:14.16.1
 
 # Install Python and pip
-RUN apt-get update && \
-    apt-get install -y python3 python3-pip && \
-    apt-get clean
+RUN apt-get update
+RUN apt-get install -y python3 python3-pip
+RUN apt-get clean
 
 # Set the working directory
 WORKDIR /app
