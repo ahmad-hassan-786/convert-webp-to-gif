@@ -14,11 +14,11 @@ COPY requirements.txt .
 RUN pip3 install --no-cache-dir -r requirements.txt
 
 # Copy the code for both the Node.js API and Python code
-COPY node_api/ /app/node_api/
-COPY python_code/ /app/python_code/
+COPY node_api/ /app/index.js/
+COPY python_code/ /app/main.py/
 
 # Set environment variables
-ENV PYTHONPATH=/app/python_code
+ENV PYTHONPATH=/app/main.py
 ENV NODE_ENV=production
 ENV PORT=3000
 
